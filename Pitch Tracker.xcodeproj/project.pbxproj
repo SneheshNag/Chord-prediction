@@ -13,6 +13,20 @@
 		7A70226323453893007C42B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A70226123453893007C42B4 /* Main.storyboard */; };
 		7A70226523453894007C42B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A70226423453894007C42B4 /* Assets.xcassets */; };
 		7A70226823453894007C42B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A70226623453894007C42B4 /* LaunchScreen.storyboard */; };
+		7A702287234538C6007C42B4 /* YINUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A70226F234538C4007C42B4 /* YINUtil.swift */; };
+		7A70228A234538C6007C42B4 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702272234538C4007C42B4 /* Buffer.swift */; };
+		7A70228B234538C6007C42B4 /* EstimationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702273234538C4007C42B4 /* EstimationStrategy.swift */; };
+		7A70228D234538C6007C42B4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702275234538C4007C42B4 /* Config.swift */; };
+		7A702290234538C6007C42B4 /* PitchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702278234538C5007C42B4 /* PitchTracker.swift */; };
+		7A702291234538C6007C42B4 /* YINTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702279234538C5007C42B4 /* YINTransformer.swift */; };
+		7A702293234538C6007C42B4 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A70227B234538C5007C42B4 /* Array+Extensions.swift */; };
+		7A702294234538C6007C42B4 /* EstimationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A70227C234538C5007C42B4 /* EstimationError.swift */; };
+		7A702296234538C6007C42B4 /* SimpleTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A70227E234538C5007C42B4 /* SimpleTransformer.swift */; };
+		7A702297234538C6007C42B4 /* PitchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A70227F234538C5007C42B4 /* PitchEngine.swift */; };
+		7A702299234538C6007C42B4 /* YINEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702281234538C6007C42B4 /* YINEstimator.swift */; };
+		7A70229B234538C6007C42B4 /* InputSignalTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702283234538C6007C42B4 /* InputSignalTracker.swift */; };
+		7A70229C234538C6007C42B4 /* Estimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702284234538C6007C42B4 /* Estimator.swift */; };
+		7A70229D234538C6007C42B4 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702285234538C6007C42B4 /* Transformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +38,20 @@
 		7A70226423453894007C42B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A70226723453894007C42B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A70226923453894007C42B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A70226F234538C4007C42B4 /* YINUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YINUtil.swift; sourceTree = "<group>"; };
+		7A702272234538C4007C42B4 /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
+		7A702273234538C4007C42B4 /* EstimationStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimationStrategy.swift; sourceTree = "<group>"; };
+		7A702275234538C4007C42B4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		7A702278234538C5007C42B4 /* PitchTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchTracker.swift; sourceTree = "<group>"; };
+		7A702279234538C5007C42B4 /* YINTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YINTransformer.swift; sourceTree = "<group>"; };
+		7A70227B234538C5007C42B4 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		7A70227C234538C5007C42B4 /* EstimationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimationError.swift; sourceTree = "<group>"; };
+		7A70227E234538C5007C42B4 /* SimpleTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTransformer.swift; sourceTree = "<group>"; };
+		7A70227F234538C5007C42B4 /* PitchEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchEngine.swift; sourceTree = "<group>"; };
+		7A702281234538C6007C42B4 /* YINEstimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YINEstimator.swift; sourceTree = "<group>"; };
+		7A702283234538C6007C42B4 /* InputSignalTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSignalTracker.swift; sourceTree = "<group>"; };
+		7A702284234538C6007C42B4 /* Estimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Estimator.swift; sourceTree = "<group>"; };
+		7A702285234538C6007C42B4 /* Transformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,20 @@
 		7A70225A23453893007C42B4 /* Pitch Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				7A70227B234538C5007C42B4 /* Array+Extensions.swift */,
+				7A702272234538C4007C42B4 /* Buffer.swift */,
+				7A702275234538C4007C42B4 /* Config.swift */,
+				7A70227C234538C5007C42B4 /* EstimationError.swift */,
+				7A702273234538C4007C42B4 /* EstimationStrategy.swift */,
+				7A702284234538C6007C42B4 /* Estimator.swift */,
+				7A702283234538C6007C42B4 /* InputSignalTracker.swift */,
+				7A70227F234538C5007C42B4 /* PitchEngine.swift */,
+				7A702278234538C5007C42B4 /* PitchTracker.swift */,
+				7A70227E234538C5007C42B4 /* SimpleTransformer.swift */,
+				7A702285234538C6007C42B4 /* Transformer.swift */,
+				7A702281234538C6007C42B4 /* YINEstimator.swift */,
+				7A702279234538C5007C42B4 /* YINTransformer.swift */,
+				7A70226F234538C4007C42B4 /* YINUtil.swift */,
 				7A70225B23453893007C42B4 /* AppDelegate.swift */,
 				7A70225D23453893007C42B4 /* SceneDelegate.swift */,
 				7A70225F23453893007C42B4 /* ViewController.swift */,
@@ -140,7 +182,21 @@
 			files = (
 				7A70226023453893007C42B4 /* ViewController.swift in Sources */,
 				7A70225C23453893007C42B4 /* AppDelegate.swift in Sources */,
+				7A70228A234538C6007C42B4 /* Buffer.swift in Sources */,
+				7A702291234538C6007C42B4 /* YINTransformer.swift in Sources */,
+				7A70228B234538C6007C42B4 /* EstimationStrategy.swift in Sources */,
+				7A702287234538C6007C42B4 /* YINUtil.swift in Sources */,
+				7A702297234538C6007C42B4 /* PitchEngine.swift in Sources */,
+				7A70229D234538C6007C42B4 /* Transformer.swift in Sources */,
+				7A70228D234538C6007C42B4 /* Config.swift in Sources */,
+				7A70229C234538C6007C42B4 /* Estimator.swift in Sources */,
 				7A70225E23453893007C42B4 /* SceneDelegate.swift in Sources */,
+				7A702293234538C6007C42B4 /* Array+Extensions.swift in Sources */,
+				7A702294234538C6007C42B4 /* EstimationError.swift in Sources */,
+				7A702296234538C6007C42B4 /* SimpleTransformer.swift in Sources */,
+				7A702290234538C6007C42B4 /* PitchTracker.swift in Sources */,
+				7A70229B234538C6007C42B4 /* InputSignalTracker.swift in Sources */,
+				7A702299234538C6007C42B4 /* YINEstimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
