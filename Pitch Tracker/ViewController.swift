@@ -18,21 +18,19 @@ class ViewController: UIViewController {
         }
     }
     
-    lazy var pitchEngine: PitchEngine = { [weak self] in
-        let config = Config(estimationStrategy: .yin)
-        let pitchEngine = PitchEngine(config: config, delegate: self)
-        pitchEngine.levelThreshold = -30.0
-        return pitchEngine
+    lazy var segmentationEngine: SegmentationEngine = { [weak self] in
+        let engine = SegmentationEngine(delegate: self)
+        return engine
     }()
     
     @IBAction func btn(_ sender: UIButton) {
-        let text = pitchEngine.active
+        let text = segmentationEngine.active
         ? NSLocalizedString("Start", comment: "").uppercased()
         : NSLocalizedString("Stop", comment: "").uppercased()
 
         sender.setTitle(text, for: .normal)
 
-        pitchEngine.active ? pitchEngine.stop() : pitchEngine.start()
+        segmentationEngine.active ? segmentationEngine.stop() : segmentationEngine.start()
     }
     
     override func viewDidLoad() {
@@ -41,22 +39,16 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.white
         noteLabel.text = "--"
     }
-
 }
 
-// MARK: - PitchEngineDelegate
-extension ViewController: PitchEngineDelegate {
-  func pitchEngine(_ pitchEngine: PitchEngine, didReceivePitch pitch: Double) {
-    str_pitch = "\(pitch)"
-
-    print(str_pitch)
-  }
-
-  func pitchEngine(_ pitchEngine: PitchEngine, didReceiveError error: Error) {
-    print(error)
-  }
-
-  public func pitchEngineWentBelowLevelThreshold(_ pitchEngine: PitchEngine) {
-    str_pitch = "--"
-  }
+extension ViewController: SegmentationEngineDelegate {
+    func segmentationEngine(_ segmentationEngine: SegmentationEngine, didReceiveSegment segment: Segment) {
+        // Handle segments
+    }
+    
+    func segmentationEngine(_ segmentationEngine: SegmentationEngine, didReceiveError error: Error) {
+        // Handle error
+    }
+    
+    
 }

@@ -27,6 +27,8 @@
 		7A70229B234538C6007C42B4 /* InputSignalTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702283234538C6007C42B4 /* InputSignalTracker.swift */; };
 		7A70229C234538C6007C42B4 /* Estimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702284234538C6007C42B4 /* Estimator.swift */; };
 		7A70229D234538C6007C42B4 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A702285234538C6007C42B4 /* Transformer.swift */; };
+		7ADC00C023520C1B00C59B6E /* SegmentationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC00BF23520C1B00C59B6E /* SegmentationEngine.swift */; };
+		7ADC00C223520CBC00C59B6E /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADC00C123520CBC00C59B6E /* Segment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		7A702283234538C6007C42B4 /* InputSignalTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputSignalTracker.swift; sourceTree = "<group>"; };
 		7A702284234538C6007C42B4 /* Estimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Estimator.swift; sourceTree = "<group>"; };
 		7A702285234538C6007C42B4 /* Transformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
+		7ADC00BF23520C1B00C59B6E /* SegmentationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentationEngine.swift; sourceTree = "<group>"; };
+		7ADC00C123520CBC00C59B6E /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				7A702284234538C6007C42B4 /* Estimator.swift */,
 				7A702283234538C6007C42B4 /* InputSignalTracker.swift */,
 				7A70227F234538C5007C42B4 /* PitchEngine.swift */,
+				7ADC00BF23520C1B00C59B6E /* SegmentationEngine.swift */,
+				7ADC00C123520CBC00C59B6E /* Segment.swift */,
 				7A702278234538C5007C42B4 /* PitchTracker.swift */,
 				7A70227E234538C5007C42B4 /* SimpleTransformer.swift */,
 				7A702285234538C6007C42B4 /* Transformer.swift */,
@@ -183,10 +189,12 @@
 				7A70226023453893007C42B4 /* ViewController.swift in Sources */,
 				7A70225C23453893007C42B4 /* AppDelegate.swift in Sources */,
 				7A70228A234538C6007C42B4 /* Buffer.swift in Sources */,
+				7ADC00C023520C1B00C59B6E /* SegmentationEngine.swift in Sources */,
 				7A702291234538C6007C42B4 /* YINTransformer.swift in Sources */,
 				7A70228B234538C6007C42B4 /* EstimationStrategy.swift in Sources */,
 				7A702287234538C6007C42B4 /* YINUtil.swift in Sources */,
 				7A702297234538C6007C42B4 /* PitchEngine.swift in Sources */,
+				7ADC00C223520CBC00C59B6E /* Segment.swift in Sources */,
 				7A70229D234538C6007C42B4 /* Transformer.swift in Sources */,
 				7A70228D234538C6007C42B4 /* Config.swift in Sources */,
 				7A70229C234538C6007C42B4 /* Estimator.swift in Sources */,
