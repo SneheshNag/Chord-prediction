@@ -7,16 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
     
     @IBOutlet var noteLabel: UILabel!
     
-    var str_pitch = "--" {
-        didSet {
-            noteLabel.text = str_pitch
-        }
-    }
+    var pitches:[Double] = []
     
     lazy var pitchEngine: PitchEngine = { [weak self] in
         let config = Config(estimationStrategy: .yin)
@@ -33,13 +30,38 @@ class ViewController: UIViewController {
         sender.setTitle(text, for: .normal)
 
         pitchEngine.active ? pitchEngine.stop() : pitchEngine.start()
+        
+        if !pitchEngine.active {
+            if !pitches.isEmpty {
+                print("sending pitches to server")
+                sendPitchesToServer(pitches: pitches)
+                pitches = []
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Tuner".uppercased()
-        view.backgroundColor = UIColor.white
-        noteLabel.text = "--"
+        title = "Play with Shimon"
+//        view.backgroundColor = UIColor.white
+        noteLabel.isHidden = true
+    }
+    
+    func sendPitchesToServer( pitches: [Double]) {
+        let parameters: [String: [Double]] = [
+            "pitch": pitches
+        ]
+
+        AF.request("https://us-central1-api-test-256817.cloudfunctions.net/postPitch", method: .post, parameters: parameters, encoding:
+        JSONEncoding.default).responseJSON { response in
+            switch response.result {
+                case .success:
+                    print(response.value! as! [Double])
+
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
 
 }
@@ -47,9 +69,7 @@ class ViewController: UIViewController {
 // MARK: - PitchEngineDelegate
 extension ViewController: PitchEngineDelegate {
   func pitchEngine(_ pitchEngine: PitchEngine, didReceivePitch pitch: Double) {
-    str_pitch = "\(pitch)"
-
-    print(str_pitch)
+    pitches.append(pitch)
   }
 
   func pitchEngine(_ pitchEngine: PitchEngine, didReceiveError error: Error) {
@@ -57,6 +77,7 @@ extension ViewController: PitchEngineDelegate {
   }
 
   public func pitchEngineWentBelowLevelThreshold(_ pitchEngine: PitchEngine) {
-    str_pitch = "--"
+    pitches.append(0)
+//    print("below threshold")
   }
 }
