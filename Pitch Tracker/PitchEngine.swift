@@ -11,6 +11,7 @@ import AVFoundation
 
 public protocol PitchEngineDelegate: class {
   func pitchEngine(_ pitchEngine: PitchEngine, didReceivePitch pitch: Double)
+    func pitchEngine(_ pitchEngine: PitchEngine, didReceiveLevel level: Double)
   func pitchEngine(_ pitchEngine: PitchEngine, didReceiveError error: Error)
   func pitchEngineWentBelowLevelThreshold(_ pitchEngine: PitchEngine)
 }
@@ -124,6 +125,10 @@ public final class PitchEngine {
 
 // MARK: - SignalTrackingDelegate
 extension PitchEngine: SignalTrackerDelegate {
+    public func signalTracker(_ signalTracker: SignalTracker, didReceiveLevel level: Float, atTime time: AVAudioTime) {
+        self.delegate?.pitchEngine(self, didReceiveLevel: Double(level))
+    }
+    
   public func signalTracker(_ signalTracker: SignalTracker,
                             didReceiveBuffer buffer: AVAudioPCMBuffer,
                             atTime time: AVAudioTime) {

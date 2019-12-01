@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet var noteLabel: UILabel!
     
     var pitches:[Double] = []
+    var levels:[Double] = []
+    
+    var startTime = CFAbsoluteTimeGetCurrent()
     
     lazy var pitchEngine: PitchEngine = { [weak self] in
         let config = Config(estimationStrategy: .yin)
@@ -34,8 +37,10 @@ class ViewController: UIViewController {
         if !pitchEngine.active {
             if !pitches.isEmpty {
                 print("sending pitches to server")
+                startTime = CFAbsoluteTimeGetCurrent()
                 sendPitchesToServer(pitches: pitches)
                 pitches = []
+                levels = []
             }
         }
     }
@@ -43,20 +48,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Play with Shimon"
-//        view.backgroundColor = UIColor.white
         noteLabel.isHidden = true
     }
     
     func sendPitchesToServer( pitches: [Double]) {
         let parameters: [String: [Double]] = [
-            "pitch": pitches
+            "pitch": pitches,
+            "level": levels
         ]
 
         AF.request("https://us-central1-api-test-256817.cloudfunctions.net/postPitch", method: .post, parameters: parameters, encoding:
         JSONEncoding.default).responseJSON { response in
             switch response.result {
                 case .success:
-                    print(response.value! as! [Double])
+                    print("time elapsed: \(CFAbsoluteTimeGetCurrent() - self.startTime) sec")
+                    let returned = response.value! as! [[Double]]
+                    print(returned)
 
                 case .failure(let error):
                     print(error)
@@ -71,6 +78,10 @@ extension ViewController: PitchEngineDelegate {
   func pitchEngine(_ pitchEngine: PitchEngine, didReceivePitch pitch: Double) {
     pitches.append(pitch)
   }
+    
+    func pitchEngine(_ pitchEngine: PitchEngine, didReceiveLevel level: Double) {
+        levels.append(level)
+    }
 
   func pitchEngine(_ pitchEngine: PitchEngine, didReceiveError error: Error) {
     print(error)
@@ -78,6 +89,6 @@ extension ViewController: PitchEngineDelegate {
 
   public func pitchEngineWentBelowLevelThreshold(_ pitchEngine: PitchEngine) {
     pitches.append(0)
-//    print("below threshold")
+    levels.append(0)
   }
 }

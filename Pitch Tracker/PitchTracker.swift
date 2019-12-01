@@ -12,6 +12,9 @@ public protocol SignalTrackerDelegate: class {
   func signalTracker(_ signalTracker: SignalTracker,
                      didReceiveBuffer buffer: AVAudioPCMBuffer,
                      atTime time: AVAudioTime)
+    func signalTracker(_ signalTracker: SignalTracker,
+    didReceiveLevel level: Float,
+    atTime time: AVAudioTime)
   func signalTrackerWentBelowLevelThreshold(_ signalTracker: SignalTracker)
 }
 
