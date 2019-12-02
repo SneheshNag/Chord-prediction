@@ -11,10 +11,15 @@ import Alamofire
 
 class ViewController: UIViewController {
     
-    @IBOutlet var noteLabel: UILabel!
+    @IBOutlet var keyPicker: UIPickerView!
     
     var pitches:[Double] = []
     var levels:[Double] = []
+    
+    var keys = ["C", "D", "E", "F", "G", "A", "B"]
+    var mode = ["major", "minor"]
+    
+    var selectedScale = [0.0, 0.0]
     
     var startTime = CFAbsoluteTimeGetCurrent()
     
@@ -48,14 +53,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Play with Shimon"
-        noteLabel.isHidden = true
+        keyPicker.delegate = self
+        keyPicker.dataSource = self
     }
     
     func sendPitchesToServer( pitches: [Double]) {
         let parameters: [String: [Double]] = [
             "pitch": pitches,
-            "level": levels
+            "level": levels,
+            "key": selectedScale
         ]
+        
+        print(selectedScale)
 
         AF.request("https://us-central1-api-test-256817.cloudfunctions.net/postPitch", method: .post, parameters: parameters, encoding:
         JSONEncoding.default).responseJSON { response in
@@ -91,4 +100,30 @@ extension ViewController: PitchEngineDelegate {
     pitches.append(0)
     levels.append(0)
   }
+}
+
+extension ViewController:UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return keys.count
+        }
+        return mode.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return keys[row]
+        } else {
+            return mode[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedScale[component] = Double(row)
+    }
+    
 }
