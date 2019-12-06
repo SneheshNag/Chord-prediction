@@ -1,0 +1,6 @@
+numpy>=1.15.0
+pandas
+scipy
+keras
+tensorflow
+google-cloud-storage
