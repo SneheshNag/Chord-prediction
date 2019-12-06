@@ -46,9 +46,7 @@ class NoteSegmenter:
                     for kk in range(jj-1):
                         mid = (input[ii]+input[ii+jj]) * 0.5
                         testratio2 = input[ii+kk] / mid
-                        # print(testratio2)
                         if testratio2 > 1.059 or testratio < 0.945:
-                            # print('t2', testratio2)
                             input[kk] = mid
 
         return input
@@ -61,23 +59,31 @@ class NoteSegmenter:
         """
 
         # Remove Outliers / Vibrato
-        f0 = self.remove_outlier(self.convert_freq2midi(f0))
+        f0 = medfilt(self.convert_freq2midi(f0), 5)
 
         # Peak Picking
+
+        # RMS: find fluctuations within note
+        rms = np.abs(np.diff(rms))
+        rms = np.concatenate(([0], rms), axis=0)
+        rms_idx = find_peaks(rms)[0]
 
         # Pitch series: find starts and stops of notes
         sig_value = np.abs(np.diff(f0))
         sig_value = np.concatenate(([0], sig_value), axis=0)
 
         # limit to lowest bass singer note (E2)
-        sig_value[sig_value < 40] = 0
+        sig_value[sig_value < 1] = 0
         sig_idx = find_peaks(sig_value)[0]
-        sig_idx = np.concatenate((sig_idx, f0.shape), axis=0)
+        if rms_idx[-1] > sig_idx[-1]:
+            sig_idx = np.concatenate((sig_idx, [f0.shape[0] - 1]), axis=0)
 
-        # RMS: find fluctuations within note
-        rms = np.abs(np.diff(rms))
-        rms = np.concatenate(([0], rms), axis=0)
-        rms_idx = find_peaks(rms)[0]
+        import matplotlib.pyplot as plt
+
+        plt.plot(f0, 'r')
+        plt.plot(sig_idx, f0[sig_idx], 'go')
+        plt.plot(rms_idx, f0[rms_idx], 'b.')
+        plt.show()
 
         new_pitch = []
 
@@ -100,15 +106,18 @@ class NoteSegmenter:
                 d_i = np.abs(np.diff(i))
                 d_i = np.concatenate(([0], d_i), axis=0)
                 d_idx = find_peaks(d_i)[0]
-                note_series = np.round(medfilt(i[d_idx]))
+                note_series = np.round(i[d_idx])
+                if 0 not in d_idx:
+                    note_series = np.concatenate(([i[0]], note_series), axis=0)
 
                 if note_series.shape[0] > 1:
                     # increment uniquely changing notes
-                    midi_series.append(note_series[1])
-                    if note_series.shape[0] > 2:
-                        for j in range(2, note_series.shape[0]-1):
-                            if midi_series[-1] != note_series[j]:
-                                if note_series[j+1] != midi_series[-1]:
-                                    midi_series.append(note_series[j])
+                    midi_series.append(note_series[0])
+                    for j in range(1, note_series.shape[0]-1):
+                        if midi_series[-1] != note_series[j]:
+                            if note_series[j+1] != midi_series[-1]:
+                                midi_series.append(note_series[j])
+                else:
+                    midi_series.append(note_series[0])
 
-        return np.array(midi_series)
+        return np.array(np.mod(np.round(midi_series), 12))
