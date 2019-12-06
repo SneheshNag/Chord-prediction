@@ -12,16 +12,18 @@ import Alamofire
 class ViewController: UIViewController {
     
     @IBOutlet var keyPicker: UIPickerView!
+    @IBOutlet var chordsLabel: UILabel!
     
     var pitches:[Double] = []
     var levels:[Double] = []
     
-    var keys = ["C", "D", "E", "F", "G", "A", "B"]
+    var keys = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
     var mode = ["major", "minor"]
     
     var selectedScale = [0.0, 0.0]
     
     var startTime = CFAbsoluteTimeGetCurrent()
+    var duration = CFAbsoluteTimeGetCurrent()
     
     lazy var pitchEngine: PitchEngine = { [weak self] in
         let config = Config(estimationStrategy: .yin)
@@ -37,12 +39,18 @@ class ViewController: UIViewController {
 
         sender.setTitle(text, for: .normal)
 
-        pitchEngine.active ? pitchEngine.stop() : pitchEngine.start()
+        if pitchEngine.active {
+            pitchEngine.stop()
+        } else {
+            pitchEngine.start()
+            startTime = CFAbsoluteTimeGetCurrent()
+        }
         
         if !pitchEngine.active {
             if !pitches.isEmpty {
                 print("sending pitches to server")
-                startTime = CFAbsoluteTimeGetCurrent()
+//                startTime = CFAbsoluteTimeGetCurrent()
+                duration = CFAbsoluteTimeGetCurrent() - startTime
                 sendPitchesToServer(pitches: pitches)
                 pitches = []
                 levels = []
@@ -64,15 +72,34 @@ class ViewController: UIViewController {
             "key": selectedScale
         ]
         
-        print(selectedScale)
+//        print(parameters)
 
         AF.request("https://us-central1-api-test-256817.cloudfunctions.net/postPitch", method: .post, parameters: parameters, encoding:
         JSONEncoding.default).responseJSON { response in
             switch response.result {
                 case .success:
-                    print("time elapsed: \(CFAbsoluteTimeGetCurrent() - self.startTime) sec")
-                    let returned = response.value! as! [[Double]]
-                    print(returned)
+//                    print("time elapsed: \(CFAbsoluteTimeGetCurrent() - self.startTime) sec")
+                    let returned = response.value! as! [Int]
+                    print(returned, self.duration)
+                    let div = self.duration/Double(returned.count)
+                    var times:[Double] = []
+                    var chords = [String]()
+                    for i in 0...returned.count - 1 {
+                        if returned[i] < 12 {
+                            chords.append("\(self.keys[returned[i]]) major")
+                        } else {
+                            chords.append("\(self.keys[returned[i] - 12]) minor")
+                        }
+                        times.append(Double(i)*div)
+                    }
+                    
+                    var printer = ""
+                
+                    for i in 0...chords.count-1 {
+                        printer += "\(chords[i]) at \(times[i]) sec\n"
+                    }
+                    self.chordsLabel.text = printer
+                    print(printer)
 
                 case .failure(let error):
                     print(error)

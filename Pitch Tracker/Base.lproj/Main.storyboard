@@ -34,20 +34,29 @@
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        " textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03W-SF-BFT">
+                                <rect key="frame" x="189.5" y="658" width="35.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="mEv-Bw-ZHU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6VM-Bz-yTV"/>
                             <constraint firstItem="4oC-1I-uag" firstAttribute="centerX" secondItem="dnc-kg-pfZ" secondAttribute="centerX" id="OP9-Nr-Msg"/>
                             <constraint firstItem="dnc-kg-pfZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SRE-NO-C0x"/>
+                            <constraint firstItem="03W-SF-BFT" firstAttribute="top" secondItem="mEv-Bw-ZHU" secondAttribute="bottom" constant="64" id="TSw-Ev-kSS"/>
                             <constraint firstItem="dnc-kg-pfZ" firstAttribute="centerX" secondItem="mEv-Bw-ZHU" secondAttribute="centerX" id="fI4-N1-Jm4"/>
                             <constraint firstItem="mEv-Bw-ZHU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="131" id="hhz-z9-usq"/>
                             <constraint firstItem="dnc-kg-pfZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mvh-Fg-9eI"/>
                             <constraint firstItem="4oC-1I-uag" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="267" id="nAv-p1-zGU"/>
+                            <constraint firstItem="03W-SF-BFT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="woh-XB-kDs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="chordsLabel" destination="03W-SF-BFT" id="eYb-5z-gNR"/>
                         <outlet property="keyPicker" destination="dnc-kg-pfZ" id="DOz-Zj-tPy"/>
                     </connections>
                 </viewController>
