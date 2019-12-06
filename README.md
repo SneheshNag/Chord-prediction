@@ -6,7 +6,16 @@ Before running the iOS app, please [install Alamofire Framework](https://cocoapo
 2) Start recording by tapping "Start"
 3) The chords with indexes are displayed after receiving from the backend
 
-# Pitch-Tracker
+# Pitch Engine
+The main ViewController acts as the delegate for the pitch engine. 
+```swift
+public protocol PitchEngineDelegate: class {
+  func pitchEngine(_ pitchEngine: PitchEngine, didReceivePitch pitch: Double) // Called when new pitch value is received
+  func pitchEngine(_ pitchEngine: PitchEngine, didReceiveLevel level: Double) // Called when the corresponding instantaneous power level is received
+  func pitchEngine(_ pitchEngine: PitchEngine, didReceiveError error: Error) // Called when there is an error in the signal flow path
+  func pitchEngineWentBelowLevelThreshold(_ pitchEngine: PitchEngine) // Called when the input audio goes below the set threshold
+}
+```
 
 # NoteSegmentation.py
 Note Segmenter python class.
