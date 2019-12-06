@@ -78,13 +78,6 @@ class NoteSegmenter:
         if rms_idx[-1] > sig_idx[-1]:
             sig_idx = np.concatenate((sig_idx, [f0.shape[0] - 1]), axis=0)
 
-        import matplotlib.pyplot as plt
-
-        plt.plot(f0, 'r')
-        plt.plot(sig_idx, f0[sig_idx], 'go')
-        plt.plot(rms_idx, f0[rms_idx], 'b.')
-        plt.show()
-
         new_pitch = []
 
         # break rms peaks by pitch-derived starts/stops
