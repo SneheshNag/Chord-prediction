@@ -1,3 +1,11 @@
+# iOS App
+Before running the iOS app, please [install Alamofire Framework](https://cocoapods.org/pods/Alamofire).
+
+## Using the app
+1) Select the scale you want to sing/play and record
+2) Start recording by tapping "Start"
+3) The chords with indexes are displayed after receiving from the backend
+
 # Pitch-Tracker
 
 # NoteSegmentation.py
