@@ -39,3 +39,7 @@ Jupyter Notebook containing data loading and conversion, as well as LSTM buildin
 ```bash
 jupyter notebook #select ChordPrediction.ipyndb 
 ```
+
+# Cloud function
+Here is the link to the google cloud function. The storage bucket contains the trained model.
+https://console.cloud.google.com/functions/list?project=api-test-256817
