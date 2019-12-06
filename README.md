@@ -43,3 +43,6 @@ jupyter notebook #select ChordPrediction.ipyndb
 # Cloud function
 Here is the link to the google cloud function. The storage bucket contains the trained model.
 https://console.cloud.google.com/functions/list?project=api-test-256817
+
+# Requirements - python
+The requirements for the python scripts are in [requirements.txt](backend/requirements.txt)
